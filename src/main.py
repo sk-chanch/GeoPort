@@ -36,7 +36,7 @@ from pymobiledevice3.osu.os_utils import get_os_utils
 from pymobiledevice3.bonjour import DEFAULT_BONJOUR_TIMEOUT, browse_mobdev2
 from pymobiledevice3.pair_records import get_local_pairing_record, get_remote_pairing_record_filename, get_preferred_pair_record
 from pymobiledevice3.common import get_home_folder
-from pymobiledevice3.cli.remote import cli_install_wetest_drivers
+# from pymobiledevice3.cli.remote import cli_install_wetest_drivers
 
 from pymobiledevice3.cli.remote import tunnel_task
 from pymobiledevice3.lockdown import LockdownClient
@@ -205,7 +205,7 @@ async def start_quic_tunnel(service_provider: RemoteServiceDiscoveryService) -> 
     logger.warning("Start USB QUIC tunnel")
 
     global terminate_tunnel_thread
-    stop_remoted_if_required()
+    # stop_remoted_if_required()
     #install_driver_if_required()
 
     # if sys.platform == 'win32':
@@ -217,7 +217,7 @@ async def start_quic_tunnel(service_provider: RemoteServiceDiscoveryService) -> 
     service = await create_core_device_tunnel_service_using_rsd(service_provider, autopair=True)
 
     async with service.start_quic_tunnel() as tunnel_result:
-        resume_remoted_if_required()
+        # resume_remoted_if_required()
 
         logger.info(f"QUIC Address: {tunnel_result.address}")
         logger.info(f"QUIC Port: {tunnel_result.port}")
@@ -266,7 +266,7 @@ async def start_tcp_tunnel(service_provider: CoreDeviceTunnelProxy) -> None:
     logger.warning("Start USB TCP tunnel")
 
     global terminate_tunnel_thread
-    stop_remoted_if_required()
+    # stop_remoted_if_required()
     #install_driver_if_required()
 
     #service = await create_core_device_tunnel_service_using_rsd(service_provider, autopair=True)
@@ -859,7 +859,7 @@ async def start_wifi_tcp_tunnel() -> None:
     logger.warning(f"Start Wifi TCP Tunnel")
 
     global terminate_tunnel_thread
-    stop_remoted_if_required()
+    # stop_remoted_if_required()
     #install_driver_if_required()
 
     # if sys.platform == 'win32':
@@ -872,7 +872,7 @@ async def start_wifi_tcp_tunnel() -> None:
     service = CoreDeviceTunnelProxy(lockdown)
 
     async with service.start_tcp_tunnel() as tunnel_result:
-        resume_remoted_if_required()
+        # resume_remoted_if_required()
 
         logger.info(f'Identifier: {service.remote_identifier}')
         logger.info(f'Interface: {tunnel_result.interface}')
@@ -896,7 +896,7 @@ async def start_wifi_quic_tunnel() -> None:
     logger.warning(f"Start Wifi QUIC Tunnel")
 
     global terminate_tunnel_thread
-    stop_remoted_if_required()
+    # stop_remoted_if_required()
     #install_driver_if_required()
 
     # if sys.platform == 'win32':
@@ -909,7 +909,7 @@ async def start_wifi_quic_tunnel() -> None:
     # service = CoreDeviceTunnelProxy(lockdown)
 
     async with service.start_quic_tunnel() as tunnel_result:
-        resume_remoted_if_required()
+        # resume_remoted_if_required()
 
         logger.info(f'Identifier: {service.remote_identifier}')
         logger.info(f'Interface: {tunnel_result.interface}')
@@ -1021,6 +1021,8 @@ def start_set_location_thread(latitude, longitude):
 
     # Reset the terminate flag before starting the thread
     terminate_location_thread = False
+
+
 
 
 
